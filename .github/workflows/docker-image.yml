@@ -15,4 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: source .env && docker build . --file Dockerfile --tag helloworld:${APP_VERSION}
+      run: 
+      - source .env && docker build . --file Dockerfile --tag helloworld:latest --tag helloworld:${APP_VERSION}
+      - docker push ghcr.io/zelaqin/helloworld:${APP_VERSION} && docker push ghcr.io/zelaqin/helloworld:latest 
