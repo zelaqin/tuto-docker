@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Set the version of the image
-LABEL version="%VERSION%""
+LABEL version="%VERSION%"
 
 # Specify the command to run when the container starts
 CMD ["npm", "start"]
