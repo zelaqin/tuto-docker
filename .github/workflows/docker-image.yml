@@ -27,5 +27,8 @@ jobs:
 
     - name: Build&Push Docker image
       run: |
-        source .env && docker build . --file Dockerfile --tag ghcr.io/zelaqin/helloworld:latest --tag ghcr.io/zelaqin/helloworld:${APP_VERSION}
+        source .env 
+        sed -i "s/%VERSION%/$APP_VERSION/" package.json
+        sed -i "s/%VERSION%/$APP_VERSION/" Dockerfile
+        docker build . --file Dockerfile --tag ghcr.io/zelaqin/helloworld:latest --tag ghcr.io/zelaqin/helloworld:${APP_VERSION}
         docker push ghcr.io/zelaqin/helloworld:${APP_VERSION} && docker push ghcr.io/zelaqin/helloworld:latest 
